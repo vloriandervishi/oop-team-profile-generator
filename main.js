@@ -1,12 +1,16 @@
-const Mananger = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 const inquirer = require("inquirer");
 const Manager = require("./lib/Manager");
-const employeeArray = [];
+const fs = require("fs");
+const webPage = require("./src/page-template");
+const webTemplate=require("./src/startpage");
+const managerArray = [];
+const internArray = [];
+const engineerArray = [];
 
-const promptManager = () => {
-  inquirer
+const promptManager = (supervisor) => {
+  return inquirer
     .prompt([
       {
         type: "input",
@@ -28,13 +32,31 @@ const promptManager = () => {
         name: "phone",
         message: "What is your phone number?",
       },
+      {
+        type: "confirm",
+        name: "addTeamMember",
+        message: "Would you like to enter another team member? ",
+        default: false,
+      },
     ])
     .then((data) => {
-      const Managers = new Manager(data.name, data.id, data.email, data.phone);
-      console.log(Managers);
+     
+      managerArray.push( webPage(data));
+      const ma=managerArray.map(it=>{
+        console.log(it);
+         return it;
+         
+      });
+      webTemplate(ma.join(''));
+     //console.log(managerArray.join("")); /// displayes added section into array
+     if (data.addTeamMember) {
+        return employeeTypePrompt();
+      } else {
+        return supervisor;
+      }
     });
 };
-const promptEngineer = () => {
+const promptEngineer = (engin) => {
   inquirer
     .prompt([
       {
@@ -57,13 +79,28 @@ const promptEngineer = () => {
         name: "github",
         message: "What is your github account?",
       },
+      {
+        type: "confirm",
+        name: "addTeamMember",
+        message: "Would you like to enter another team member? ",
+        default: false,
+      },
     ])
     .then((eng) => {
       const Engineers = new Engineer(eng.name, eng.id, eng.email, eng.github);
-      console.log(Engineers);
+
+      engineerArray.push(Engineers);
+      console.log(engineerArray);
+
+      //console.log(Engineers);
+      if (eng.addTeamMember) {
+        return employeeTypePrompt();
+      } else {
+        const newEngineerSection = webPage();
+      }
     });
 };
-const promptIntern = () => {
+const promptIntern = (associate) => {
   inquirer
     .prompt([
       {
@@ -86,6 +123,12 @@ const promptIntern = () => {
         name: "school",
         message: "What school did you attend?",
       },
+      {
+        type: "confirm",
+        name: "addTeamMember",
+        message: "Would you like to enter another team member? ",
+        default: false,
+      },
     ])
     .then((inter) => {
       const Interns = new Intern(
@@ -94,7 +137,13 @@ const promptIntern = () => {
         inter.email,
         inter.school
       );
+      internArray.push(Interns);
       console.log(Interns);
+      if (inter.addTeamMember) {
+        return employeeTypePrompt();
+      } else {
+        return associate;
+      }
     });
 };
 
@@ -127,4 +176,7 @@ const employeeTypePrompt = () => {
       }
     });
 };
+function writeToFile(fileName, data) {
+  return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+}
 employeeTypePrompt();
