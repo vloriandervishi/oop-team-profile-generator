@@ -3,7 +3,7 @@
 
 const  createManager=employee=>{
  
-const addSection= `<div class="row">
+const managerSection= `<div class="row">
 <div class="card" style="width: 18rem;">
     <div class="card-header">
       ${employee.name}
@@ -11,11 +11,11 @@ const addSection= `<div class="row">
     <ul class="list-group list-group-flush">
       <li class="list-group-item">${employee.id}</li>
       <li class="list-group-item">${employee.email}</li>
-      <li class="list-group-item">${employee.github}</li>
+      <li class="list-group-item">${employee.phone}</li>
     </ul>
   </div>
 </div>`;
- return addSection;
+ return managerSection;
 }
 
 

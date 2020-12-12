@@ -1,5 +1,7 @@
-const generatePage=(array)=>{
-    console.log(`<!DOCTYPE html>
+const {writeFile,copyFile}=require('../src/createFile');
+const managerSection=require('../src/page-template');
+const generatePage=(section)=>{
+     const webTemplate=`<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -9,10 +11,12 @@ const generatePage=(array)=>{
     </head>
     <body>
         <heading class="d-flex justify-content-center bg-danger p-3 text-white">TEAM</heading>
-        ${array}
+    ${section}
+        
     </body>
-    </html>`);
+    </html>`;
+    return webTemplate;
   }
-  
+ 
   
   module.exports=generatePage;

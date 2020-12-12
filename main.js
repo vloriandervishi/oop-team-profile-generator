@@ -4,7 +4,9 @@ const inquirer = require("inquirer");
 const Manager = require("./lib/Manager");
 const fs = require("fs");
 const webPage = require("./src/page-template");
-const webTemplate=require("./src/startpage");
+const webTemplate = require("./src/startpage");
+const {writeFile,copyFile}=require('./src/createFile');
+
 const managerArray = [];
 const internArray = [];
 const engineerArray = [];
@@ -41,19 +43,21 @@ const promptManager = (supervisor) => {
     ])
     .then((data) => {
      
-      managerArray.push( webPage(data));
-      const ma=managerArray.map(it=>{
-        console.log(it);
-         return it;
-         
+      managerArray.push(webPage(data));
+      const ma = managerArray.map((it) => {
+       // console.log(it); works
+        return it;
       });
-      webTemplate(ma.join(''));
-     //console.log(managerArray.join("")); /// displayes added section into array
-     if (data.addTeamMember) {
+       writeFile(webTemplate(ma.join("")));
+
+     // console.log(webTemplate( webPage(ma.join(""))));
+      //console.log(managerArray.join("")); /// displayes added section into array
+      if (data.addTeamMember) {
         return employeeTypePrompt();
       } else {
         return supervisor;
       }
+    
     });
 };
 const promptEngineer = (engin) => {
@@ -87,11 +91,12 @@ const promptEngineer = (engin) => {
       },
     ])
     .then((eng) => {
-      const Engineers = new Engineer(eng.name, eng.id, eng.email, eng.github);
-
-      engineerArray.push(Engineers);
-      console.log(engineerArray);
-
+      //engineerArray.push(webPage(eng));
+     // const ea = engineerArray.map((it) => {
+     //   console.log(it);
+//return it;
+      
+      //webTemplate(ma.join(""));
       //console.log(Engineers);
       if (eng.addTeamMember) {
         return employeeTypePrompt();
