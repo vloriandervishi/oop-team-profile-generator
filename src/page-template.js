@@ -3,7 +3,7 @@
 
 const  createManager=employee=>{
  
-const managerSection= `<div class="row">
+const managerSection= `<div class="col-2 mt-5">
 <div class="card" style="width: 18rem;">
     <div class="card-header">
       ${employee.name}

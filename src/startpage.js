@@ -11,8 +11,9 @@ const generatePage=(section)=>{
     </head>
     <body>
         <heading class="d-flex justify-content-center bg-danger p-3 text-white">TEAM</heading>
+        <div class="row">
     ${section}
-        
+        </div>
     </body>
     </html>`;
     return webTemplate;
