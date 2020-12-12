@@ -5,7 +5,7 @@ const Manager = require("./lib/Manager");
 const fs = require("fs");
 const webPage = require("./src/page-template");
 const webTemplate = require("./src/startpage");
-const {writeFile,copyFile}=require('./src/createFile');
+const { writeFile, copyFile } = require("./src/createFile");
 
 const managerArray = [];
 const internArray = [];
@@ -39,28 +39,26 @@ const promptManager = (supervisor) => {
         name: "addTeamMember",
         message: "Would you like to enter another team member? ",
         default: false,
-      },
+      }
     ])
     .then((data) => {
-     
-      managerArray.push(webPage(data));
+      managerArray.push(webPage(data,supervisor));
       const ma = managerArray.map((it) => {
-       // console.log(it); works
+        // console.log(it); works
         return it;
       });
-       writeFile(webTemplate(ma.join("")));
+      writeFile(webTemplate(ma.join("")));
 
-     // console.log(webTemplate( webPage(ma.join(""))));
+      // console.log(webTemplate( webPage(ma.join(""))));
       //console.log(managerArray.join("")); /// displayes added section into array
       if (data.addTeamMember) {
         return employeeTypePrompt();
       } else {
         return supervisor;
       }
-    
     });
 };
-const promptEngineer = (engin) => {
+const promptEngineer = (engine) => {
   inquirer
     .prompt([
       {
@@ -88,20 +86,22 @@ const promptEngineer = (engin) => {
         name: "addTeamMember",
         message: "Would you like to enter another team member? ",
         default: false,
-      },
+      }
     ])
     .then((eng) => {
-      //engineerArray.push(webPage(eng));
-     // const ea = engineerArray.map((it) => {
-     //   console.log(it);
-//return it;
+      engineerArray.push(webPage(eng,engine));
+      const ea = engineerArray.map((it) => {
+        console.log(it);
+        return it;
+      });
       
-      //webTemplate(ma.join(""));
-      //console.log(Engineers);
+      
+      webTemplate(ea.join(""));
+      
       if (eng.addTeamMember) {
         return employeeTypePrompt();
       } else {
-        const newEngineerSection = webPage();
+        return engine;
       }
     });
 };
@@ -133,17 +133,15 @@ const promptIntern = (associate) => {
         name: "addTeamMember",
         message: "Would you like to enter another team member? ",
         default: false,
-      },
+      }
     ])
     .then((inter) => {
-      const Interns = new Intern(
-        inter.name,
-        inter.id,
-        inter.email,
-        inter.school
-      );
-      internArray.push(Interns);
-      console.log(Interns);
+      
+      internArray.push(webPage(inter,associate));
+      const ia= internArray.map(i=>{
+       return i;
+      });
+      webTemplate(ia.join(""));
       if (inter.addTeamMember) {
         return employeeTypePrompt();
       } else {
@@ -168,13 +166,13 @@ const employeeTypePrompt = () => {
       // console.log(data.choices+ 'data.choices');// undefined
       switch (data.title) {
         case "Manager":
-          promptManager();
+          promptManager(data.title);
           break;
         case "Intern":
-          promptIntern();
+          promptIntern(data.title);
           break;
         case "Engineer":
-          promptEngineer();
+          promptEngineer(data.title);
           break;
         default:
           return `must select something!`;
