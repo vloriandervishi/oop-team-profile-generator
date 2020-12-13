@@ -46,15 +46,10 @@ const promptManager = (supervisor) => {
      employeeArray.push(addManager(manaGer));
      console.log(employeeArray.join(""));
      
-     // writeFile(webTemplate(ma.join("")));
-
-      // console.log(webTemplate( webPage(ma.join(""))));
-      //console.log(managerArray.join("")); /// displayes added section into array
+     writeFile(webTemplate(employeeArray.join("")));
       if (data.addTeamMember) {
-        return employeeTypePrompt();
-      } else {
-       
-      }
+         employeeTypePrompt();
+      } 
     });
 };
 const promptEngineer = (engine) => {
@@ -92,10 +87,10 @@ return   inquirer
       employeeArray.push(addEngineer(newEngineer));
      
      // writeFile (webTemplate(ea.join("")));
-     
+     writeFile(webTemplate(employeeArray.join("")));
       
       if (eng.addTeamMember) {
-        return employeeTypePrompt();
+         employeeTypePrompt();
       } 
     });
 };
@@ -133,11 +128,12 @@ const promptIntern = (associate) => {
       const newIntern= new Intern(inter.name,inter.id,inter.email,inter.school)
       employeeArray.push(addIntern(newIntern));
      
-      
       writeFile(webTemplate(employeeArray.join("")));
+      
       if (inter.addTeamMember) {
-        return employeeTypePrompt();
-      } 
+       
+         employeeTypePrompt();
+      }
     });
 };
 
