@@ -134,7 +134,7 @@ const promptIntern = (associate) => {
       employeeArray.push(addIntern(newIntern));
      
       
-      writeFile(webTemplate(employeeArray));
+      writeFile(webTemplate(employeeArray.join("")));
       if (inter.addTeamMember) {
         return employeeTypePrompt();
       } 
