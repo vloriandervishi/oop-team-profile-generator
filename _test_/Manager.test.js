@@ -7,9 +7,14 @@ describe("make sure that getRole returns Manager", () => {
 });
 
 describe("Make sure constructor returns name, id,email,office number", () => {
-  const manager = new Manager ("Kirby", "abCsdfsdf112123778", "kirby@kirby.com", '615-505-5050');
-    test('Displays Name',()=>{
-  expect(manager.name).toEqual(expect.any(String));
+  const manager = new Manager(
+    "Kirby",
+    "abCsdfsdf112123778",
+    "kirby@kirby.com",
+    "615-505-5050"
+  );
+  test("Displays Name", () => {
+    expect(manager.name).toEqual(expect.any(String));
   });
   test("displays ID", () => {
     expect(manager.id).toEqual(expect.any(String));

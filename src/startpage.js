@@ -1,9 +1,8 @@
- const main =require('../main');
+const main = require("../main");
 
-const generatePage=(main)=>{
-   
-    // need to check the out put for each call
-     const webTemplate=`<!DOCTYPE html>
+const generatePage = (main) => {
+  // need to check the out put for each call
+  const webTemplate = `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -18,8 +17,7 @@ const generatePage=(main)=>{
       
     </body>
     </html>`;
-   return webTemplate;
-  }
- 
-  
-  module.exports=generatePage;
+  return webTemplate;
+};
+
+module.exports = generatePage;

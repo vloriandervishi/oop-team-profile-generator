@@ -1,7 +1,6 @@
 // We want to add a section of each employee type on the html
 
-
-const addEngineer=(employee)=>{
+const addEngineer = (employee) => {
   const engineerSection = `
   
   <div class="col-2 mt-5">
@@ -21,10 +20,9 @@ const addEngineer=(employee)=>{
   </div>
   </div>
   `;
-    return engineerSection;
-  
+  return engineerSection;
 };
-const addIntern=(employee)=>{
+const addIntern = (employee) => {
   const internSection = `
          
   <div class="col-2 mt-5">
@@ -43,9 +41,9 @@ const addIntern=(employee)=>{
 </div>
 </div>
 `;
-return internSection;
+  return internSection;
 };
-const addManager=(employee)=>{
+const addManager = (employee) => {
   const managerSection = `
 
   <div class="col-2 mt-5">
@@ -63,8 +61,7 @@ const addManager=(employee)=>{
       </ul>
     </div>
   `;
-      return managerSection;
-}
+  return managerSection;
+};
 
-module.exports = {addIntern,addEngineer,addManager};
-
+module.exports = { addIntern, addEngineer, addManager };

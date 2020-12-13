@@ -7,7 +7,12 @@ describe("make sure that getRole returns Intern", () => {
 });
 
 describe("Make sure constructor returns name, id,school", () => {
-  const int = new Intern ("Bland", "abC112123778", "bland@bland.com", "random university");
+  const int = new Intern(
+    "Bland",
+    "abC112123778",
+    "bland@bland.com",
+    "random university"
+  );
   test("displays Name", () => {
     expect(int.name).toEqual(expect.any(String));
   });
