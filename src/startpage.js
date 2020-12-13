@@ -13,8 +13,9 @@ const generatePage = (main) => {
     </head>
     <body>
         <heading class="d-flex justify-content-center bg-danger p-3 text-white">TEAM</heading>
+        <div class="d-flex flex-wrap justify-content-between>
       ${main}
-      
+      <div>
     </body>
     </html>`;
   return webTemplate;
