@@ -2,10 +2,9 @@ const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 const inquirer = require("inquirer");
 const Manager = require("./lib/Manager");
-const fs = require("fs");
 const { addManager, addEngineer, addIntern } = require("./src/page-template");
 const webTemplate = require("./src/startpage");
-const { writeFile, copyFile } = require("./src/createFile");
+const { writeFile } = require("./src/createFile");
 
 const employeeArray = [];
 
@@ -47,7 +46,7 @@ const promptManager = (supervisor) => {
         data.officeNumber
       );
       employeeArray.push(addManager(manaGer));
-      console.log(employeeArray.join(""));
+     // console.log(employeeArray.join(""));
 
       writeFile(webTemplate(employeeArray.join("")));
       if (data.addTeamMember) {
